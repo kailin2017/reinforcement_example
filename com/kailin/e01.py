@@ -8,10 +8,10 @@ EPSILON= 0.9
 ALPHA = 0.1
 GAMMA = 0.9
 MAX_EPISODES = 100
-FRESH_TIME = 0.001
+FRESH_TIME = 0.0001
 
-def buildQtable(states,actions):
-    return pandas.DataFrame(numpy.zeros((states,len(actions))),columns=actions)
+def buildQtable():
+    return pandas.DataFrame(numpy.zeros([STATES,len(ACTIONS)]),columns=ACTIONS)
 
 def chooseAction(states,qTable):
     stateActions = qTable.iloc[states,:]
@@ -43,7 +43,7 @@ def updateEnv(S,episode,stepCounter):
     if S == 'terminal':
         interaction = 'Episode %s:totalSteps=%s'%(episode+1,stepCounter)
         print('\r{}'.format(interaction),end='')
-        time.sleep(1)
+        time.sleep(0)
         print('\r                 ',end='')
     else:
         envList[S] = 'o'
@@ -51,7 +51,7 @@ def updateEnv(S,episode,stepCounter):
         time.sleep(FRESH_TIME)
 
 def rl():
-    qTable = buildQtable(STATES,ACTIONS)
+    qTable = buildQtable()
     stepCounterList = []
     for e in range(MAX_EPISODES):
         S = 0
