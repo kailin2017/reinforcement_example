@@ -61,14 +61,13 @@ def rl():
         while not isTerminal:
             A = chooseAction(S,qTable)
             S_,R = getEnvFeedback(S,A)
-            qPredict = qTable.ix[S,A]
             if S_ == 'terminal':
                 qTarget = R
                 isTerminal = True
                 stepCounterList.append(stepCounter)
             else:
                 qTarget = R + GAMMA * qTable.iloc[S_,:].max()
-
+            qPredict = qTable.ix[S,A]
             qTable.ix[S,A] += ALPHA*(qTarget-qPredict)
             S = S_
             updateEnv(S,e,stepCounter)

@@ -1,5 +1,6 @@
-from com.kailin.e02.maze import Maze
-from com.kailin.e02.rl import QLearningTable
+from com.kailin.e02_qlearning.rl import QLearningTable
+from com.kailin.maze import Maze
+
 
 def Update():
     for e in range(100):
